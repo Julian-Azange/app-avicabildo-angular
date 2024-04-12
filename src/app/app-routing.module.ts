@@ -4,6 +4,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FormShoppingComponent } from './pages/form-shopping/form-shopping.component';
 import { Lot1Component } from './pages/lot-1/lot-1.component';
 import { ErrorComponent } from './pages/404/404.component';
+import { FormLossesComponent } from './pages/form-losses/form-losses.component';
+import { FormSalesComponent } from './pages/form-sales/form-sales.component';
+import { FormEarningsComponent } from './pages/form-earnings/form-earnings.component';
 
 const routes: Routes = [
   {
@@ -24,15 +27,15 @@ const routes: Routes = [
   },
   {
     path: 'form-losses',
-    component: FormShoppingComponent,
+    component: FormLossesComponent,
   },
   {
     path: 'form-sales',
-    component: FormShoppingComponent,
+    component: FormSalesComponent,
   },
   {
     path: 'form-earnings',
-    component: FormShoppingComponent,
+    component: FormEarningsComponent,
   },
   {
     path: '**',

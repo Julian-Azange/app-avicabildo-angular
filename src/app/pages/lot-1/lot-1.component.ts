@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lot-1',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class Lot1Component {
 
+  constructor (private location: Location){}
+
+  goBack() {
+    this.location.back();
+  }
 }
