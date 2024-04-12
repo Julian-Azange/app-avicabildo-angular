@@ -1,7 +1,7 @@
 {
   "name": "Avicabildo",
   "short_name": "Avicabildo",
-  "theme_color": "#1976d2",
+  "theme_color": "#f7c54a",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
