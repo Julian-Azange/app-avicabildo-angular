@@ -19,6 +19,9 @@ import { RouterModule } from '@angular/router';
 import { Lot1Component } from './pages/lot-1/lot-1.component';
 import { ErrorComponent } from './pages/404/404.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,7 @@ import { ErrorComponent } from './pages/404/404.component';
     ErrorComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
