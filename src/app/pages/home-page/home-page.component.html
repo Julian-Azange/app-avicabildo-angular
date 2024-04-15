@@ -1,67 +1,86 @@
 <div class="container">
-    <div class="text-center mb-4">
-        <h3 class=""><b>Bienvenidos</b></h3>
-        <p>Sistema de registro para inventario.</p>
-    </div>
     <div class="row">
-        <!-- col -->
 
-        <div class="col-md-12 col-12">
+        <div class="col-md-12 col-12 mb-2 ps-4 pe-4 mt-3">
+            <h2>Bienvenido</h2>
+            <p>Aquí podras llevar el inventario de cada uno de tus lotes.</p>
+        </div>
 
-            <div class="row gy-4">
-
-                <div class="col-md-6 col-6">
-                    <div class="card card-lote mb-3 clickable-card"  (click)="navigateToLote1()">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="w-100">
-                                    <h4 class="mb-0 mt-2">Lote</h4>
-                                </div>
-                            </div>
-                            <h1>1</h1>
+        <!-- <div class="col-md-12 col-12">
+            <div class="card color mb-2">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="w-100">
+                            
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-md-6 col-6">
-                    <!-- card -->
-                    <div class="card card-lote mb-3 clickable-card" (click)="navigateToError()">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="w-100">
-                                    <h4 class="mb-0 mt-2">Lote</h4>
-                                </div>
-                            </div>
-                            <h1>2</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6">
-                    <!-- card -->
-                    <div class="card card-lote mb-3 clickable-card" (click)="navigateToError()">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="w-100">
-                                    <h4 class="mb-0 mt-2">Lote</h4>
-                                </div>
-                            </div>
-                            <h1>3</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6">
-                    <div class="card card-lote mb-3 clickable-card" (click)="navigateToError()">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="w-100">
-                                    <h4 class="mb-0 mt-2">Lote</h4>
-                                </div>
-                            </div>
-                            <h1>4</h1>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div> -->
 
+        <div class="px-3 py-3">
+            <div class="col-md-12 col-12 text-center">
+
+                <div class="row gy-4">
+
+                    <div class="col-md-6 col-6">
+                        <div class="card card-lote mb-2 clickable-card" (click)="navigateToLote1()">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-100">
+                                        <h4 class="mb-0 mt-2">Lote</h4>
+                                    </div>
+                                </div>
+                                <h1>1</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-6">
+                        <!-- card -->
+                        <div class="card card-lote mb-2 clickable-card" (click)="navigateToError()">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-100">
+                                        <h4 class="mb-0 mt-2">Lote</h4>
+                                    </div>
+                                </div>
+                                <h1>2</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-6">
+                        <div class="card card-lote mb-2 clickable-card" (click)="navigateToError()">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-100">
+                                        <h4 class="mb-0 mt-2">Lote</h4>
+                                    </div>
+                                </div>
+                                <h1>3</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-6">
+                        <div class="card card-lote mb-2 clickable-card" (click)="navigateToError()">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-100">
+                                        <h4 class="mb-0 mt-2">Lote</h4>
+                                    </div>
+                                </div>
+                                <h1>4</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+
+
     </div>
 </div>
