@@ -20,6 +20,9 @@ import { Lot1Component } from './pages/lot-1/lot-1.component';
 import { ErrorComponent } from './pages/404/404.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
+import { ModalDatosComponent } from './components/modal-datos/modal-datos.component';
 
 
 @NgModule({
@@ -35,10 +38,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormSalesComponent,
     FormEarningsComponent,
     Lot1Component,
-    ErrorComponent
+    ErrorComponent,
+    DeleteConfirmationModalComponent,
+    ModalDatosComponent
   ],
   imports: [
     ReactiveFormsModule,
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,

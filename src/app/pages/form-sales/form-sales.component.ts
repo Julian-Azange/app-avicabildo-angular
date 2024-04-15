@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { SalesService } from './sales.service';
+import { SalesService } from './sales.service'; // Importa el servicio
+import * as $ from 'jquery'; // Importa jQuery
+import 'bootstrap'; // Importa Bootstrap
+
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
+
 
 @Component({
     selector: 'app-form-sales',
@@ -9,69 +15,77 @@ import { SalesService } from './sales.service';
     styleUrls: ['./form-sales.component.css']
 })
 export class FormSalesComponent implements OnInit {
-    form: FormGroup;
-    datos: any[] = [];
-    totalValor: number = 0;
+    form: FormGroup; // Define el formulario
+    datos: any[] = []; // Array para almacenar los datos
+    totalValor: number = 0; // Total de los valores
 
     constructor(
         private fb: FormBuilder,
-        private salesService: SalesService,
-        private location: Location
+        private location: Location,
+        private salesService: SalesService, // Inyecta el servicio
+        private dialog: MatDialog // Inyecta MatDialog
     ) {
-        // Inicializar el formulario
+        // Inicializa el formulario reactivo
         this.form = this.fb.group({
-            item: ['', Validators.required],
+            item: [{ value: 'defect', disabled: true }],
             fecha: ['', Validators.required],
             descripcion: ['', Validators.required],
-            cantidad: [0, [Validators.required, Validators.min(1)]],
-            valor: [0, [Validators.required, Validators.min(0)]],
+            cantidad: ['', [Validators.min(1), Validators.required]],
+            valor: ['', Validators.required],
             observaciones: ['']
         });
     }
 
     ngOnInit() {
-        // Cargar los datos almacenados al inicializar el componente
-        this.cargarDatos();
+        // Carga los datos almacenados
+        this.datos = this.salesService.getDatos();
+        this.calcularTotal();
     }
 
-    // Método para agregar datos al servicio y actualizar la lista de datos
+    // Método para enviar datos
     enviarDatos() {
-        const nuevoDato = this.form.value;
-        this.salesService.agregarDato(nuevoDato);
-        this.datos.push(nuevoDato);
+        if (this.form.valid) {
+            const nuevoDato = this.form.value;
+            this.salesService.guardarDato(nuevoDato);
+            this.datos.push(nuevoDato);
+            this.calcularTotal();
+            this.form.reset(); // Limpia el formulario
 
-        // Actualizar el total de valor
-        this.totalValor += nuevoDato.valor;
-
-        // Limpiar el formulario después de enviar
-        this.form.reset({
-            item: 'defect',
-            fecha: '',
-            descripcion: '',
-            cantidad: 0,
-            valor: 0,
-            observaciones: ''
-        });
+            // Abre el modal después de enviar los datos
+            this.dialog.open(ModalDatosComponent, {
+                data: {
+                    datos: this.datos,
+                    totalValor: this.totalValor
+                }
+            });
+        }
     }
 
-    // Método para eliminar un dato específico
-    eliminarDato(index: number) {
-        const datoAEliminar = this.datos[index];
-        this.salesService.eliminarDato(datoAEliminar);
-
-        // Actualizar totalValor restando el valor del dato eliminado
-        this.totalValor -= datoAEliminar.valor;
-
-        // Eliminar el dato de la lista
-        this.datos.splice(index, 1);
-    }
-
-    // Método para cargar datos almacenados
-    cargarDatos() {
-        this.datos = this.salesService.obtenerDatos();
+    // Método para calcular el total
+    calcularTotal() {
         this.totalValor = this.datos.reduce((total, dato) => total + dato.valor, 0);
     }
 
+    // Método para eliminar un dato
+    eliminarDato(index: number) {
+        const datoEliminado = this.datos.splice(index, 1);
+        this.salesService.eliminarDato(index);
+        this.calcularTotal();
+    }
+
+    // Método para mostrar los datos
+    mostrarDatos() {
+        this.dialog.open(ModalDatosComponent, {
+            data: {
+                datos: this.datos,
+                totalValor: this.totalValor
+            }
+        });
+    }
+
+
+
+    // Método para regresar
     goBack() {
         this.location.back();
     }

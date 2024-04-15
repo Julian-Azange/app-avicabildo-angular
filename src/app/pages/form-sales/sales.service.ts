@@ -4,36 +4,27 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class SalesService {
-    private datos: any[] = [];
+    private storageKey = 'claveLocalVentas';
 
-    constructor() {
-        this.cargarDatosDesdeLocalStorage();
+    constructor() { }
+
+    // Obtiene datos desde el localStorage
+    getDatos() {
+        const cachedData = localStorage.getItem(this.storageKey);
+        return cachedData ? JSON.parse(cachedData) : [];
     }
 
-    agregarDato(nuevoDato: any) {
-        this.datos.push(nuevoDato);
-        this.guardarDatosEnLocalStorage();
+    // Guarda un nuevo dato en el localStorage
+    guardarDato(dato: any) {
+        const datos = this.getDatos();
+        datos.push(dato);
+        localStorage.setItem(this.storageKey, JSON.stringify(datos));
     }
 
-    obtenerDatos(): any[] {
-        return this.datos;
-    }
-
-    eliminarDato(indice: number) {
-        if (indice >= 0 && indice < this.datos.length) {
-            this.datos.splice(indice, 1);
-            this.guardarDatosEnLocalStorage();
-        }
-    }
-
-    guardarDatosEnLocalStorage() {
-        localStorage.setItem('datosVentas', JSON.stringify(this.datos));
-    }
-
-    cargarDatosDesdeLocalStorage() {
-        const datosGuardados = localStorage.getItem('datosVentas');
-        if (datosGuardados) {
-            this.datos = JSON.parse(datosGuardados);
-        }
+    // Elimina un dato por índice
+    eliminarDato(index: number) {
+        const datos = this.getDatos();
+        datos.splice(index, 1);
+        localStorage.setItem(this.storageKey, JSON.stringify(datos));
     }
 }

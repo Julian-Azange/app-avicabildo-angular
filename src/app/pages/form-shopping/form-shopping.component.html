@@ -5,6 +5,14 @@
             <h2>Compras</h2>
         </header>
 
+        <div class="d-flex justify-content-end mr-3 mb-3">
+            <button type="button" class="btn btn-color" (click)="mostrarDatos()">
+                <i class="fas fa-table"></i>
+                Ver datos
+            </button>
+        </div>
+
+
         <form [formGroup]="form" class="m-2" (ngSubmit)="enviarDatos()">
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -53,46 +61,6 @@
             <button type="button" class="btn btn-color rounded-circle" (click)="goBack()">
                 <i class="fas fa-arrow-left"></i>
             </button>
-        </div>
-
-        <!-- Contenedor para la tabla -->
-        <div class="table-responsive">
-            <h5>Datos Ingresados:</h5>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Valor</th>
-                        <th scope="col">Observaciones</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let dato of datos; let i = index">
-                        <td>{{dato.item}}</td>
-                        <td>{{dato.fecha}}</td>
-                        <td>{{dato.descripcion}}</td>
-                        <td>{{dato.cantidad}}</td>
-                        <td>{{dato.valor | currency: 'COP'}}</td>
-                        <td>{{dato.observaciones}}</td>
-                        <td>
-                            <button class="btn btn-danger btn-sm" (click)="eliminarDato(i)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4"></td>
-                        <td>Total: <span>{{ totalValor | currency: 'COP' }}</span></td>
-                        <td colspan="2"></td>
-                    </tr>
-                </tfoot>
-            </table>
         </div>
     </div>
 </div>

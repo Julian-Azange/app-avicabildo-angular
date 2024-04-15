@@ -15,6 +15,8 @@ import { Injectable } from '@angular/core';
 })
 export class EarningsService {
 
+    // private storageKey = 'claveLocalGanancias';
+
     constructor() { }
 
     private getData(key: string): any[] {
@@ -31,6 +33,7 @@ export class EarningsService {
         const totalVentas = this.calcularTotalTabla('claveLocalVentas');
         const totalPerdidas = this.calcularTotalTabla('claveLocalPerdidas');
         return totalVentas - (totalCompras + totalPerdidas);
+
     }
 
     borrarDatos(key: string): void {

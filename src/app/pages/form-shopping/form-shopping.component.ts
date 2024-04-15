@@ -5,6 +5,10 @@ import { ShoppingService } from './shopping.service'; // Importa el servicio que
 import * as $ from 'jquery'; // Importa jQuery
 import 'bootstrap'; // Importa Bootstrap
 
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
+
+
 @Component({
   selector: 'app-form-shopping',
   templateUrl: './form-shopping.component.html',
@@ -19,7 +23,8 @@ export class FormShoppingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private location: Location,
-    private shoppingService: ShoppingService // Inyecta el servicio
+    private shoppingService: ShoppingService, // Inyecta el servicio
+    private dialog: MatDialog // Inyecta MatDialog
   ) {
     // Inicializa el formulario reactivo en el constructor
     this.form = this.fb.group({
@@ -49,13 +54,13 @@ export class FormShoppingComponent implements OnInit {
       this.calcularTotal();
       this.form.reset(); // Limpia el formulario
 
-      // Mostrar el modal
-      console.log('Mostrando modal');
-      $('#tablaModal').modal('show');
+      // Mostrar el modal con los datos después de enviar los datos
+      this.mostrarDatos();
     } else {
       console.log('Formulario no válido');
     }
   }
+
 
   // Método para calcular el total
   calcularTotal() {
@@ -69,10 +74,14 @@ export class FormShoppingComponent implements OnInit {
     this.calcularTotal();
   }
 
-  // Método para mostrar los datos
+  // Método para mostrar los datos en el modal
   mostrarDatos() {
-    // Muestra el modal con los datos
-    // $('#tablaModal').modal('show');
+    this.dialog.open(ModalDatosComponent, {
+      data: {
+        datos: this.datos,
+        totalValor: this.totalValor
+      }
+    });
   }
 
   // Método para regresar

@@ -5,10 +5,14 @@ import { LossesService } from './losses.service'; // Importa el servicio
 import * as $ from 'jquery'; // Importa jQuery
 import 'bootstrap'; // Importa Bootstrap
 
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
+
+
 @Component({
-  selector: 'app-form-losses',
-  templateUrl: './form-losses.component.html',
-  styleUrls: ['./form-losses.component.css']
+    selector: 'app-form-losses',
+    templateUrl: './form-losses.component.html',
+    styleUrls: ['./form-losses.component.css']
 })
 export class FormLossesComponent implements OnInit {
     form: FormGroup; // Define el formulario
@@ -18,7 +22,8 @@ export class FormLossesComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private location: Location,
-        private LossesService: LossesService // Inyecta el servicio
+        private lossesService: LossesService, // Inyecta el servicio
+        private dialog: MatDialog // Inyecta MatDialog
     ) {
         // Inicializa el formulario reactivo
         this.form = this.fb.group({
@@ -33,7 +38,7 @@ export class FormLossesComponent implements OnInit {
 
     ngOnInit() {
         // Carga los datos almacenados
-        this.datos = this.LossesService.getDatos();
+        this.datos = this.lossesService.getDatos();
         this.calcularTotal();
     }
 
@@ -41,10 +46,18 @@ export class FormLossesComponent implements OnInit {
     enviarDatos() {
         if (this.form.valid) {
             const nuevoDato = this.form.value;
-            this.LossesService.guardarDato(nuevoDato);
+            this.lossesService.guardarDato(nuevoDato);
             this.datos.push(nuevoDato);
             this.calcularTotal();
             this.form.reset(); // Limpia el formulario
+
+            // Abre el modal después de enviar los datos
+            this.dialog.open(ModalDatosComponent, {
+                data: {
+                    datos: this.datos,
+                    totalValor: this.totalValor
+                }
+            });
         }
     }
 
@@ -56,15 +69,21 @@ export class FormLossesComponent implements OnInit {
     // Método para eliminar un dato
     eliminarDato(index: number) {
         const datoEliminado = this.datos.splice(index, 1);
-        this.LossesService.eliminarDato(index);
+        this.lossesService.eliminarDato(index);
         this.calcularTotal();
     }
 
     // Método para mostrar los datos
     mostrarDatos() {
-        // Puedes agregar funcionalidades para mostrar los datos si lo necesitas
-        
+        this.dialog.open(ModalDatosComponent, {
+            data: {
+                datos: this.datos,
+                totalValor: this.totalValor
+            }
+        });
     }
+
+
 
     // Método para regresar
     goBack() {

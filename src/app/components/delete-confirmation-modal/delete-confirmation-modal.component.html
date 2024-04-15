@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-center font-weight-bold">Confirmar borrado</h1>
+<div mat-dialog-content class="my-dialog-content p-3">
+    <p class="text-muted text-center">¿Estás seguro de que deseas eliminar los datos de este lote?</p>
+</div>
+<div mat-dialog-actions class=" d-flex justify-content-around p-3">
+    <button mat-button (click)="onConfirm()" class="btn btn-success">Confirmar</button>
+    <button mat-button (click)="onCancel()" class="btn btn-danger">Cancelar</button>
+</div>

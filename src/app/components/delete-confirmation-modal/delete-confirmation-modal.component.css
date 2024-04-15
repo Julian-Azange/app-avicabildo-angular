@@ -1,0 +1,35 @@
+.my-dialog-title {
+    color: #ff0000;
+    /* Color rojo */
+    font-weight: bold;
+    text-align: center;
+    /* Centra el texto */
+}
+
+.my-dialog-content {
+    font-size: 14px;
+    /* Tamaño de fuente más pequeño */
+    padding: 20px;
+    /* Espacio alrededor del contenido */
+}
+
+.my-dialog-actions {
+    justify-content: space-between;
+    /* Distribuye uniformemente los botones */
+    padding: 10px;
+    /* Espacio alrededor de las acciones */
+}
+
+.my-cancel-button {
+    background-color: #e0e0e0;
+    /* Color de fondo gris claro */
+    color: #000000;
+    /* Color de texto negro */
+}
+
+.my-confirm-button {
+    background-color: #ff0000;
+    /* Color de fondo rojo */
+    color: #ffffff;
+    /* Color de texto blanco */
+}
