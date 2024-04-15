@@ -1,0 +1,56 @@
+.custom-btn {
+    display: block;
+    width: 80%;
+    margin: 0 auto 10px;
+    border-radius: 20px;
+    background-color: #fefffe;
+    color: #828594;
+    border: none;
+    box-shadow: 0 4px 8px #d4dcef;
+}
+
+.custom-btn:hover {
+    background-color: #bfc3fc;
+}
+
+#tablaModal .modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.btn-color {
+    background-color: #fab913;
+    color: #fff;
+    box-shadow: 0 4px 8px #fdd264;
+}
+
+/* Estilos para redondear las esquinas de los inputs y textarea */
+.form-control,
+textarea,
+.btn {
+    border-radius: 15px;
+}
+
+.btn-color:hover {
+    background-color: #fdd264;
+    color: #fff;
+}
+
+/* Estilos adicionales si lo necesitas */
+#comprasForm {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 12px #f7d6a3;
+
+}
+
+@media screen and (max-width: 768px) {
+    .table {
+        font-size: 12px;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+}

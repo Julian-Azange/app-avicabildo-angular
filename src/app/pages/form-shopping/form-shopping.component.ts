@@ -72,7 +72,7 @@ export class FormShoppingComponent implements OnInit {
   // Método para mostrar los datos
   mostrarDatos() {
     // Muestra el modal con los datos
-    $('#tablaModal').modal('show');
+    // $('#tablaModal').modal('show');
   }
 
   // Método para regresar
