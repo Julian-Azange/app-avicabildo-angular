@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
 import { ModalDatosComponent } from './components/modal-datos/modal-datos.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { EmptyTablesModalComponent } from './components/empty-tables-modal/empty-tables-modal.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { ModalDatosComponent } from './components/modal-datos/modal-datos.compon
     Lot1Component,
     ErrorComponent,
     DeleteConfirmationModalComponent,
-    ModalDatosComponent
+    ModalDatosComponent,
+    ConfirmationModalComponent,
+    EmptyTablesModalComponent
   ],
   imports: [
     ReactiveFormsModule,

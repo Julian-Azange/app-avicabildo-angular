@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { SalesService } from './sales.service'; // Importa el servicio
-import * as $ from 'jquery'; // Importa jQuery
-import 'bootstrap'; // Importa Bootstrap
-
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
-
+import { ConfirmationModalComponent } from 'src/app/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
     selector: 'app-form-sales',
@@ -37,8 +34,8 @@ export class FormSalesComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Carga los datos almacenados
-        this.datos = this.salesService.getDatos();
+        // Carga los datos almacenados usando la clave específica de almacenamiento
+        this.datos = this.salesService.getDatos(this.getStorageKey());
         this.calcularTotal();
     }
 
@@ -46,18 +43,14 @@ export class FormSalesComponent implements OnInit {
     enviarDatos() {
         if (this.form.valid) {
             const nuevoDato = this.form.value;
-            this.salesService.guardarDato(nuevoDato);
+            // Guarda el dato usando la storageKey específica
+            this.salesService.guardarDato(nuevoDato, this.getStorageKey());
             this.datos.push(nuevoDato);
             this.calcularTotal();
             this.form.reset(); // Limpia el formulario
 
-            // Abre el modal después de enviar los datos
-            this.dialog.open(ModalDatosComponent, {
-                data: {
-                    datos: this.datos,
-                    totalValor: this.totalValor
-                }
-            });
+            // Mostrar los datos en el modal
+            this.mostrarDatos();
         }
     }
 
@@ -66,11 +59,20 @@ export class FormSalesComponent implements OnInit {
         this.totalValor = this.datos.reduce((total, dato) => total + dato.valor, 0);
     }
 
-    // Método para eliminar un dato
+    /// Método para eliminar un dato
     eliminarDato(index: number) {
-        const datoEliminado = this.datos.splice(index, 1);
-        this.salesService.eliminarDato(index);
-        this.calcularTotal();
+        const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+            data: { index }
+        });
+
+        dialogRef.afterClosed().subscribe((confirmado: boolean) => {
+            if (confirmado) {
+                // Eliminar la fila si el usuario confirma
+                const datoEliminado = this.datos.splice(index, 1)[0];
+                this.salesService.eliminarDato(index, this.getStorageKey());
+                this.calcularTotal();
+            }
+        });
     }
 
     // Método para mostrar los datos
@@ -78,15 +80,19 @@ export class FormSalesComponent implements OnInit {
         this.dialog.open(ModalDatosComponent, {
             data: {
                 datos: this.datos,
-                totalValor: this.totalValor
+                totalValor: this.totalValor,
+                storageKey: this.getStorageKey()
             }
         });
     }
 
-
-
     // Método para regresar
     goBack() {
         this.location.back();
+    }
+
+    // Método para obtener la clave de almacenamiento específica para ventas
+    private getStorageKey(): string {
+        return 'claveLocalVentas'; // Ajusta esta clave según tus necesidades
     }
 }

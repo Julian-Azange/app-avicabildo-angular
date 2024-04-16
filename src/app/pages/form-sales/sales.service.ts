@@ -8,23 +8,23 @@ export class SalesService {
 
     constructor() { }
 
-    // Obtiene datos desde el localStorage
-    getDatos() {
-        const cachedData = localStorage.getItem(this.storageKey);
+    // Obtiene datos desde el localStorage según la clave dada
+    getDatos(storageKey: string) {
+        const cachedData = localStorage.getItem(storageKey);
         return cachedData ? JSON.parse(cachedData) : [];
     }
 
-    // Guarda un nuevo dato en el localStorage
-    guardarDato(dato: any) {
-        const datos = this.getDatos();
+    // Guarda un nuevo dato en el localStorage según la clave dada
+    guardarDato(dato: any, storageKey: string) {
+        const datos = this.getDatos(storageKey);
         datos.push(dato);
-        localStorage.setItem(this.storageKey, JSON.stringify(datos));
+        localStorage.setItem(storageKey, JSON.stringify(datos));
     }
 
-    // Elimina un dato por índice
-    eliminarDato(index: number) {
-        const datos = this.getDatos();
+    // Elimina un dato por índice y clave de almacenamiento
+    eliminarDato(index: number, storageKey: string) {
+        const datos = this.getDatos(storageKey);
         datos.splice(index, 1);
-        localStorage.setItem(this.storageKey, JSON.stringify(datos));
+        localStorage.setItem(storageKey, JSON.stringify(datos));
     }
 }

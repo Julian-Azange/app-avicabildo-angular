@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { LossesService } from './losses.service'; // Importa el servicio
-import * as $ from 'jquery'; // Importa jQuery
-import 'bootstrap'; // Importa Bootstrap
-
+import { LossesService } from './losses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
-
 
 @Component({
     selector: 'app-form-losses',
@@ -37,8 +33,8 @@ export class FormLossesComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Carga los datos almacenados
-        this.datos = this.lossesService.getDatos();
+        // Carga los datos almacenados usando la clave específica de almacenamiento
+        this.datos = this.lossesService.getDatos(this.getStorageKey());
         this.calcularTotal();
     }
 
@@ -46,18 +42,14 @@ export class FormLossesComponent implements OnInit {
     enviarDatos() {
         if (this.form.valid) {
             const nuevoDato = this.form.value;
-            this.lossesService.guardarDato(nuevoDato);
+            // Guarda el dato usando la storageKey específica
+            this.lossesService.guardarDato(nuevoDato, this.getStorageKey());
             this.datos.push(nuevoDato);
             this.calcularTotal();
             this.form.reset(); // Limpia el formulario
 
-            // Abre el modal después de enviar los datos
-            this.dialog.open(ModalDatosComponent, {
-                data: {
-                    datos: this.datos,
-                    totalValor: this.totalValor
-                }
-            });
+            // Mostrar los datos en el modal
+            this.mostrarDatos();
         }
     }
 
@@ -68,8 +60,9 @@ export class FormLossesComponent implements OnInit {
 
     // Método para eliminar un dato
     eliminarDato(index: number) {
-        const datoEliminado = this.datos.splice(index, 1);
-        this.lossesService.eliminarDato(index);
+        const datoEliminado = this.datos.splice(index, 1)[0];
+        // Llama a `lossesService.eliminarDato` usando la storageKey específica
+        this.lossesService.eliminarDato(index, this.getStorageKey());
         this.calcularTotal();
     }
 
@@ -78,15 +71,19 @@ export class FormLossesComponent implements OnInit {
         this.dialog.open(ModalDatosComponent, {
             data: {
                 datos: this.datos,
-                totalValor: this.totalValor
+                totalValor: this.totalValor,
+                storageKey: this.getStorageKey()
             }
         });
     }
 
-
-
     // Método para regresar
     goBack() {
         this.location.back();
+    }
+
+    // Método para obtener la clave de almacenamiento específica para pérdidas
+    private getStorageKey(): string {
+        return 'claveLocalPerdidas'; // Ajusta esta clave según tus necesidades
     }
 }

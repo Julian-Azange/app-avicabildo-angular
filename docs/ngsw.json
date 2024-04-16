@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1713218803175,
+  "timestamp": 1713248051756,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,10 +13,10 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.5280cfd53bc19f46.js",
+        "/main.0d1d63a9d0f30258.js",
         "/manifest.webmanifest",
         "/polyfills.5bf5f878b96d611e.js",
-        "/runtime.c07fc7bd567ac834.js",
+        "/runtime.038413fc92906977.js",
         "/scripts.270eb9eda7aa487c.js",
         "/styles.63607d255f832580.css"
       ],
@@ -57,11 +57,11 @@
     "/assets/icons/icon-96x96.png": "5f62cc89a7b5782d56f1e6a706283a2d423c0502",
     "/assets/icons/icon-tecnoparque-512x512.png": "73ebcc9e828da77d8fe44864811186e5a934e781",
     "/favicon.ico": "229fc700f345a98a3f0581f22ab41fe16740d274",
-    "/index.html": "e610b21b08e101fc304361baf277de04c5ededcd",
-    "/main.5280cfd53bc19f46.js": "61120bc04f0784339bc932d69b4b0321cd34c33d",
+    "/index.html": "e7ad2a9897e78066bc9fdd0b212d39c0223c5422",
+    "/main.0d1d63a9d0f30258.js": "ec25fbad51d8cf3b67d8e08c37db2c9dfb3052a9",
     "/manifest.webmanifest": "1cb319b28ff2a40104de92a328e659b87e2f65e0",
     "/polyfills.5bf5f878b96d611e.js": "18045e1d3b36818b0bf05514ac81f5fff7c09dd6",
-    "/runtime.c07fc7bd567ac834.js": "7a41ec18365fc2c99f676627498b382e12378510",
+    "/runtime.038413fc92906977.js": "1c4e86c5aca011c43e4102cf96fbbf74200b9f21",
     "/scripts.270eb9eda7aa487c.js": "011dfc0ecf1ba06cce0e7c28a34eff6688b6c845",
     "/styles.63607d255f832580.css": "419b5f55455777b12ed8c2173ce6dc9a9bbd26db"
   },

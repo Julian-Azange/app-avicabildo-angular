@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-export class ShoppingService {
-    constructor() { }
+export class DataService {
+    constructor() {}
 
     // Obtiene datos desde el localStorage según la clave dada
     getDatos(storageKey: string) {
@@ -19,7 +19,7 @@ export class ShoppingService {
         localStorage.setItem(storageKey, JSON.stringify(datos));
     }
 
-    // Elimina un dato por índice y clave de almacenamiento
+    // Elimina un dato por índice según la clave dada
     eliminarDato(index: number, storageKey: string) {
         const datos = this.getDatos(storageKey);
         datos.splice(index, 1);

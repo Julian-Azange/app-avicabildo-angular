@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { ShoppingService } from './shopping.service'; // Importa el servicio que manejará los datos
-import * as $ from 'jquery'; // Importa jQuery
-import 'bootstrap'; // Importa Bootstrap
-
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.component';
-
+import { ShoppingService } from './shopping.service';
 
 @Component({
   selector: 'app-form-shopping',
@@ -16,9 +12,9 @@ import { ModalDatosComponent } from '../../components/modal-datos/modal-datos.co
 })
 export class FormShoppingComponent implements OnInit {
 
-  form: FormGroup; // Define el formulario
-  datos: any[] = []; // Array para almacenar los datos
-  totalValor: number = 0; // Total de los valores
+  form: FormGroup;
+  datos: any[] = [];
+  totalValor: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -26,35 +22,45 @@ export class FormShoppingComponent implements OnInit {
     private shoppingService: ShoppingService, // Inyecta el servicio
     private dialog: MatDialog // Inyecta MatDialog
   ) {
-    // Inicializa el formulario reactivo en el constructor
     this.form = this.fb.group({
-      item: [{ value: 'defect', disabled: true }],
+      item: [{ value: this.calcularSiguienteItem(), disabled: true }], // `item` inicializado automáticamente
       fecha: ['', Validators.required],
       descripcion: ['', Validators.required],
       cantidad: ['', [Validators.min(1), Validators.required]],
       valor: ['', Validators.required],
       observaciones: ['']
     });
+
   }
 
   ngOnInit() {
-    // Carga los datos almacenados
-    this.datos = this.shoppingService.getDatos();
+    // Cargar datos usando la storageKey correcta
+    this.datos = this.shoppingService.getDatos(this.getStorageKey());
     this.calcularTotal();
   }
 
-  // Método para enviar datos
   enviarDatos() {
     if (this.form.valid) {
-      console.log('Formulario válido');
       const nuevoDato = this.form.value;
-      console.log('Nuevo dato:', nuevoDato);
-      this.shoppingService.guardarDato(nuevoDato);
-      this.datos.push(nuevoDato);
-      this.calcularTotal();
-      this.form.reset(); // Limpia el formulario
 
-      // Mostrar el modal con los datos después de enviar los datos
+      // Guardar el nuevo dato usando la clave correcta
+      this.shoppingService.guardarDato(nuevoDato, this.getStorageKey());
+
+      // Agregar el nuevo dato a la lista de datos
+      this.datos.push(nuevoDato);
+
+      // Calcular el total después de agregar el nuevo dato
+      this.calcularTotal();
+
+      // Recalcular el valor del siguiente `item` y actualizar el formulario
+      this.form.patchValue({ item: this.calcularSiguienteItem() });
+
+      // Restablecer el resto del formulario
+      this.form.reset({
+        item: this.calcularSiguienteItem()
+      });
+
+      // Mostrar los datos actualizados
       this.mostrarDatos();
     } else {
       console.log('Formulario no válido');
@@ -62,30 +68,56 @@ export class FormShoppingComponent implements OnInit {
   }
 
 
-  // Método para calcular el total
   calcularTotal() {
     this.totalValor = this.datos.reduce((total, dato) => total + dato.valor, 0);
   }
 
   // Método para eliminar un dato
   eliminarDato(index: number) {
-    const datoEliminado = this.datos.splice(index, 1);
-    this.shoppingService.eliminarDato(index);
+    const datoEliminado = this.datos.splice(index, 1)[0];
+
+    // Eliminar dato usando la storageKey correcta
+    this.shoppingService.eliminarDato(index, this.getStorageKey());
+
     this.calcularTotal();
   }
 
-  // Método para mostrar los datos en el modal
   mostrarDatos() {
     this.dialog.open(ModalDatosComponent, {
       data: {
         datos: this.datos,
-        totalValor: this.totalValor
+        totalValor: this.totalValor,
+        storageKey: this.getStorageKey()
       }
     });
   }
 
-  // Método para regresar
+  calcularSiguienteItem(): number {
+    // Obtener los datos existentes de compras
+    const datos = this.shoppingService.getDatos(this.getStorageKey());
+
+    // Si no hay datos, el primer item es 1
+    if (datos.length === 0) {
+      return 1;
+    }
+
+    // Extraer los valores de los ítems existentes
+    const items = datos.map((dato: { item: number }) => dato.item);
+
+
+    // Encontrar el máximo valor de ítem y sumar 1 para obtener el siguiente valor
+    const maxItem = Math.max(...items);
+
+    // Retornar el siguiente ítem
+    return maxItem + 1;
+  }
+
+
   goBack() {
     this.location.back();
+  }
+
+  private getStorageKey(): string {
+    return 'claveLocalCompras'; // Clave de almacenamiento específica para el formulario de compras
   }
 }

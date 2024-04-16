@@ -19,7 +19,7 @@ export class EarningsService {
 
     constructor() { }
 
-    private getData(key: string): any[] {
+    public getData(key: string): any[] {
         return JSON.parse(localStorage.getItem(key) || '[]');
     }
 
@@ -34,6 +34,19 @@ export class EarningsService {
         const totalPerdidas = this.calcularTotalTabla('claveLocalPerdidas');
         return totalVentas - (totalCompras + totalPerdidas);
 
+    }
+
+    // Método para guardar el último dato de ganancia en `localStorage`
+    guardarGanancias(item: string, fecha: string, ganancia: number): void {
+        // Crear un objeto con el último dato de ganancia
+        const ultimaGanancia = {
+            item,
+            fecha,
+            ganancia
+        };
+
+        // Sobrescribir el dato existente en `localStorage`
+        localStorage.setItem('claveLocalGanancias', JSON.stringify([ultimaGanancia]));
     }
 
     borrarDatos(key: string): void {

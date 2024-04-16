@@ -24,11 +24,7 @@
             </table>
         </div>
         
-        <!-- Limpiar tablas -->
-        <button class="btn btn-danger btn-sm" (click)="borrarDatos()">
-            Borrar datos
-            <i class="fa-solid fa-trash-can-arrow-up"></i>
-        </button>
+        
     </div>
     
     <div class="text-center mt-4">
@@ -40,8 +36,15 @@
 </div>
 
 <!-- Botón de retroceso -->
-<div class="fixed-bottom ml-3 mb-2">
-    <button type="button" class="btn btn-color rounded-circle" (click)="goBack()">
+<div class="m-2 fixed-top ml-3 mb-2">
+    <button type="button" class="btn btn-sm btn-color rounded-circle" (click)="goBack()">
         <i class="fas fa-arrow-left"></i>
     </button>
 </div>
+
+
+<!-- Limpiar tablas -->
+<button class="m-3 fixed-bottom btn btn-danger btn-sm" (click)="borrarDatos()">
+    Borrar datos
+    <i class="fa-solid fa-trash-can-arrow-up"></i>
+</button>
