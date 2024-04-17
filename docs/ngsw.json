@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1713386054017,
+  "timestamp": 1713387563421,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -57,7 +57,7 @@
     "/assets/icons/icon-app.png": "347202c812bf2728ea430c66d1d3f1326b168c82",
     "/assets/icons/icon-tecnoparque-512x512.png": "73ebcc9e828da77d8fe44864811186e5a934e781",
     "/favicon.ico": "229fc700f345a98a3f0581f22ab41fe16740d274",
-    "/index.html": "a88d5bd579de982183963b81c00bc74b86c1e547",
+    "/index.html": "dc8070e3e926d2587d0412948a6e5c4e99cf9836",
     "/main.0d1d63a9d0f30258.js": "ec25fbad51d8cf3b67d8e08c37db2c9dfb3052a9",
     "/polyfills.5bf5f878b96d611e.js": "18045e1d3b36818b0bf05514ac81f5fff7c09dd6",
     "/runtime.038413fc92906977.js": "1c4e86c5aca011c43e4102cf96fbbf74200b9f21",
