@@ -1,20 +1,20 @@
 {
   "configVersion": 1,
-  "timestamp": 1713249631411,
+  "timestamp": 1713384776959,
   "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
-      "updateMode": "prefetch",
+      "updateMode": "lazy",
       "cacheQueryOptions": {
         "ignoreVary": true
       },
       "urls": [
+        "/assets/css/styles.css",
         "/favicon.ico",
         "/index.html",
         "/main.0d1d63a9d0f30258.js",
-        "/manifest.webmanifest",
         "/polyfills.5bf5f878b96d611e.js",
         "/runtime.038413fc92906977.js",
         "/scripts.270eb9eda7aa487c.js",
@@ -23,14 +23,13 @@
       "patterns": []
     },
     {
-      "name": "assets",
+      "name": "images",
       "installMode": "lazy",
-      "updateMode": "prefetch",
+      "updateMode": "lazy",
       "cacheQueryOptions": {
         "ignoreVary": true
       },
       "urls": [
-        "/assets/css/styles.css",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -59,9 +58,8 @@
     "/assets/icons/icon-app.png": "347202c812bf2728ea430c66d1d3f1326b168c82",
     "/assets/icons/icon-tecnoparque-512x512.png": "73ebcc9e828da77d8fe44864811186e5a934e781",
     "/favicon.ico": "229fc700f345a98a3f0581f22ab41fe16740d274",
-    "/index.html": "e7ad2a9897e78066bc9fdd0b212d39c0223c5422",
+    "/index.html": "687c0f15527a5dc9e4d490850926cac5584b71aa",
     "/main.0d1d63a9d0f30258.js": "ec25fbad51d8cf3b67d8e08c37db2c9dfb3052a9",
-    "/manifest.webmanifest": "73595358a5e3a15020b47dd5a91c7e074473971a",
     "/polyfills.5bf5f878b96d611e.js": "18045e1d3b36818b0bf05514ac81f5fff7c09dd6",
     "/runtime.038413fc92906977.js": "1c4e86c5aca011c43e4102cf96fbbf74200b9f21",
     "/scripts.270eb9eda7aa487c.js": "011dfc0ecf1ba06cce0e7c28a34eff6688b6c845",

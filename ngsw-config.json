@@ -5,24 +5,29 @@
     {
       "name": "app",
       "installMode": "prefetch",
+      "updateMode": "lazy",
       "resources": {
         "files": [
-          "/favicon.ico",
           "/index.html",
-          "/manifest.webmanifest",
-          "/*.css",
-          "/*.js"
+          "/favicon.ico",
+          "/**/*.html",
+          "/**/*.css",
+          "/**/*.js",
+          "/**/*.woff2"
         ]
       }
     },
     {
-      "name": "assets",
+      "name": "images",
       "installMode": "lazy",
-      "updateMode": "prefetch",
+      "updateMode": "lazy",
       "resources": {
         "files": [
-          "/assets/**",
-          "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+          "/assets/**/*",
+          "/**/*.png",
+          "/**/*.jpg",
+          "/**/*.svg",
+          "/**/*.gif"
         ]
       }
     }
