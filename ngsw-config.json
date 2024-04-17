@@ -3,31 +3,26 @@
   "index": "/index.html",
   "assetGroups": [
     {
-      "name": "app",
+      "name": "app-shell",
       "installMode": "prefetch",
-      "updateMode": "lazy",
       "resources": {
         "files": [
           "/index.html",
           "/favicon.ico",
-          "/**/*.html",
-          "/**/*.css",
-          "/**/*.js",
-          "/**/*.woff2"
+          "/*.js",
+          "/*.css",
+          "/assets/**"
         ]
       }
     },
     {
       "name": "images",
       "installMode": "lazy",
-      "updateMode": "lazy",
+      "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/**/*",
-          "/**/*.png",
-          "/**/*.jpg",
-          "/**/*.svg",
-          "/**/*.gif"
+          "/assets/ico/**",
+          "/assets/icons/**"
         ]
       }
     }

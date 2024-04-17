@@ -28,6 +28,21 @@
 
 <body>
   <app-root></app-root>
+
+
+  <!-- Registro Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/ngsw-worker.js').then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(error => {
+          console.log('Service Worker registration failed:', error);
+        });
+      });
+    }
+  </script>
+
 <script src="runtime.038413fc92906977.js" type="module"></script><script src="polyfills.5bf5f878b96d611e.js" type="module"></script><script src="scripts.270eb9eda7aa487c.js" defer></script><script src="main.0d1d63a9d0f30258.js" type="module"></script></body>
 
 </html>
