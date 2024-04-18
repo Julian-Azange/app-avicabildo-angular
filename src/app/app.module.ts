@@ -26,6 +26,11 @@ import { ModalDatosComponent } from './components/modal-datos/modal-datos.compon
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { EmptyTablesModalComponent } from './components/empty-tables-modal/empty-tables-modal.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +57,9 @@ import { EmptyTablesModalComponent } from './components/empty-tables-modal/empty
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatGridListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
